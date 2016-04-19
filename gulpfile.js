@@ -10,6 +10,8 @@ var source = require('vinyl-source-stream'); // Use conventional text streams wi
 
 var concat = require('gulp-concat'); // concatenates files
 
+//todo in new version differ rules
+var lint = require('gulp-eslint'); // Lint JS files, including jsx
 
 var config = {
     port: 9005,
@@ -65,10 +67,16 @@ gulp.task('css', function () {
         .pipe(gulp.dest(config.paths.dist + '/css'))
 });
 
+gulp.task('lint', function () {
+    return gulp.src(config.paths.js)
+        .pipe(lint({config: 'eslint.config.json'}))
+        .pipe(lint.format());
+});
+
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
-    gulp.watch(config.paths.js, ['js']);
+    gulp.watch(config.paths.js, ['js', 'lint']);
 });
 
 //default gulp task, that runs html and open tasks by simply "gulp" in console
-gulp.task('default', ['html', 'js', 'css', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
