@@ -7,5 +7,8 @@ _This is test project_
 
 ###Technologies:
 
-- npm
+- NODE, npm
 - Gulp
+- Browserify
+- Bootstrap
+- ESLint
