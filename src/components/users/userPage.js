@@ -5,7 +5,8 @@ var UserApi = require('../../api/userApi');
 var UserList = require('./userList');
 
 
-var Users = React.createClass({
+var UserPage = React.createClass({
+
     getInitialState: function () {
         return {
             users: []
@@ -28,4 +29,4 @@ var Users = React.createClass({
     }
 });
 
-module.exports = Users;
+module.exports = UserPage;

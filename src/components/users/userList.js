@@ -3,8 +3,11 @@
 var React = require('react');
 
 var UserList = React.createClass({
-
+    propTypes: {
+        users: React.PropTypes.array.isRequired
+    },
     render: function () {
+
         var createUserRow = function (user) {
             return (
                 <tr key={user.id}>
