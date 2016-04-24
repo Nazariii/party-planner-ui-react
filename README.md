@@ -12,3 +12,4 @@ _This is test project_
 - Browserify
 - Bootstrap
 - ESLint
+- Lodash
