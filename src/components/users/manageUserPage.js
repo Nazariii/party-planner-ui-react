@@ -2,6 +2,7 @@
 
 var React = require('react');
 var UserForm = require('./userForm');
+var UserApi = require('../../api/userApi');
 
 var ManageUserPage = React.createClass({
 
@@ -18,9 +19,17 @@ var ManageUserPage = React.createClass({
         return this.setState({user: this.state.user});
     },
 
+    saveUser: function (event) {
+        event.preventDefault();
+        UserApi.saveUser(this.state.user);
+    },
+
     render: function () {
         return (
-            <UserForm user={this.state.user} onChange={this.setUserState}/>
+            <UserForm user={this.state.user}
+                      onChange={this.setUserState}
+                      onSave={this.saveUser}
+            />
         );
     }
 });
