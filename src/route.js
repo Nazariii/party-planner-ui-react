@@ -15,10 +15,11 @@ var routes = (
         <NotFoundRoute handler={require('./components/page404')}/>
 
         <Route name="users" handler={require('./components/users/userPage')}/>
+        <Route name="addUser" path="user" handler={require('./components/users/manageUserPage')}/>
         <Route name="about" handler={require('./components/about/aboutPage')}/>
 
         <Redirect from="index" to="app"/>
-        <Redirect from="user" to="users"/>    //typo redirection
+        <Redirect from="usr" to="users"/>    //typo redirection
         <Redirect from="about/*" to="about"/> //wildcard redirection
     </Route>
 );
