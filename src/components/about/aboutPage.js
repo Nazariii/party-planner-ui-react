@@ -10,11 +10,6 @@ var About = React.createClass({
             } else {
                 callback();
             }
-        },
-        willTransitionFrom: function (transition, component) {
-            if (!confirm('Leave this, Yeahhh!')) {
-                transition.about();
-            }
         }
     },
 

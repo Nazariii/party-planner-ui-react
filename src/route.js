@@ -16,6 +16,7 @@ var routes = (
 
         <Route name="users" handler={require('./components/users/userPage')}/>
         <Route name="addUser" path="user" handler={require('./components/users/manageUserPage')}/>
+        <Route name="manageUser" path="user/:id" handler={require('./components/users/manageUserPage')}/>
         <Route name="about" handler={require('./components/about/aboutPage')}/>
 
         <Redirect from="index" to="app"/>

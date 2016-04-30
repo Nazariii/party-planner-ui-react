@@ -10,14 +10,35 @@ var ManageUserPage = React.createClass({
     mixins: [
         Router.Navigation
     ],
+
+    statics: {
+        willTransitionFrom: function (transition, component) {
+            if (component.state.dirty && !confirm('leave without saving')) {
+                transition.abort();
+            }
+
+        }
+    },
+
     getInitialState: function () {
         return {
             user: {id: '', firstName: '', lastName: ''},
-            errors: {}
+            errors: {},
+            dirty: false
         };
     },
 
+    //call setState in this function wouldn't cause rereander
+    componentWillMount: function () {
+        var userId = this.props.params.id;
+
+        if (userId) {
+            this.setState({user: UserApi.getUserById(userId)});
+        }
+    },
+
     setUserState: function (event) {
+        this.setState({dirty: true});
         var field = event.target.name;
         var value = event.target.value;
         this.state.user[field] = value;
@@ -47,6 +68,7 @@ var ManageUserPage = React.createClass({
             return;
         }
         UserApi.saveUser(this.state.user);
+        this.setState({dirty: false});
         Toastr.success('User saved');
         this.transitionTo('users');
     },
