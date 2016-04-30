@@ -7,9 +7,11 @@ _This is test project_
 
 ###Technologies:
 
-- NODE, npm
+- React /React Router
+- Node, npm
 - Gulp
 - Browserify
 - Bootstrap
 - ESLint
 - Lodash
+- Toastr

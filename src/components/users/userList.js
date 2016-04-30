@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var Link = require('react-router').Link;
 
 var UserList = React.createClass({
     propTypes: {
@@ -11,7 +12,7 @@ var UserList = React.createClass({
         var createUserRow = function (user) {
             return (
                 <tr key={user.id}>
-                    <td><a href={"/#users/" + user.id}>{user.id}</a></td>
+                    <td><Link to="manageUser" params={{id: user.id}}>{user.id}</Link></td>
                     <td>{user.firstName} {user.lastName}</td>
                 </tr>
             );
