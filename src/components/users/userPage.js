@@ -3,7 +3,6 @@
 var React = require('react');
 var UserApi = require('../../api/userApi');
 var UserList = require('./userList');
-var Router = require('react-router');
 var Link = require('react-router').Link;
 
 var UserPage = React.createClass({

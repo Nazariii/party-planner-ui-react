@@ -13,6 +13,7 @@ var UserForm = React.createClass({
                     label="First Name"
                     value={this.props.user.firstName}
                     onChange={this.props.onChange}
+                    error={this.props.errors.firstName}
                 />
 
                 <TextInput
@@ -20,6 +21,7 @@ var UserForm = React.createClass({
                     label="Last Name"
                     value={this.props.user.lastName}
                     onChange={this.props.onChange}
+                    error={this.props.errors.lastName}
                 />
 
                 <input type="submit"
