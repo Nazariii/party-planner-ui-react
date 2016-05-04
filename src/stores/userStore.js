@@ -37,12 +37,21 @@ Dispatcher.register(function (action) {
             _users = action.initialData.users;
             UserStore.emitChange();
             break;
+
         case ActionTypes.CREATE_USER:
             _users.push(action.user);
             UserStore.emitChange();
             break;
+
+        case ActionTypes.UPDATE_USER:
+            var existingUser = _.find(_users, {id: action.user.id});
+            var existingUserIndex = _.indexOf(_users, existingUser);
+            _users.splice(existingUserIndex, 1, action.user);
+            UserStore.emitChange();
+            break;
+
         default:
-            //no op
+        //no op
     }
 });
 

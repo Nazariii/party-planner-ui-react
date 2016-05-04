@@ -68,7 +68,13 @@ var ManageUserPage = React.createClass({
         if (!this.userFormIsValid()) {
             return;
         }
-        UserAction.createUser(this.state.user);
+
+        if (this.state.user.id) {
+            UserAction.updateUser(this.state.user);
+        } else {
+            UserAction.createUser(this.state.user);
+        }
+
         this.setState({dirty: false});
         Toastr.success('User saved');
         this.transitionTo('users');

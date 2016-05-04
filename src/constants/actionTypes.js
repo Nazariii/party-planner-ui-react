@@ -2,6 +2,7 @@
 
 var keyMirror = require('react/lib/keyMirror');
 module.exports = keyMirror({
+    INITIALIZE: null,
     CREATE_USER: null,
-    INITIALIZE: null
+    UPDATE_USER: null
 });

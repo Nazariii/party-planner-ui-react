@@ -13,6 +13,15 @@ var UserAction = {
             actionType: ActionTypes.CREATE_USER,
             user: newUser
         });
+    },
+    
+    updateUser: function (user) {
+        var updatedUser = UserApi.saveUser(user);
+
+        Dispatcher.dispatch({
+            actionType: ActionTypes.UPDATE_USER,
+            user: updatedUser
+        });
     }
 };
 
