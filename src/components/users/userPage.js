@@ -15,6 +15,18 @@ var UserPage = React.createClass({
         };
     },
 
+    _onChange: function () {
+        this.setState({users: UserStore.getAllUsers()});
+    },
+
+    componentWillMount: function () {
+        UserStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function () {
+        UserStore.removeChangeListener(this._onChange);
+    },
+
     render: function () {
         return (
             <div >

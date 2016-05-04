@@ -22,6 +22,15 @@ var UserAction = {
             actionType: ActionTypes.UPDATE_USER,
             user: updatedUser
         });
+    },
+    
+    deleteUser: function (id) {
+        UserApi.deleteUser(id);
+ 
+        Dispatcher.dispatch({
+            actionType: ActionTypes.DELETE_USER,
+            id: id
+        });
     }
 };
 

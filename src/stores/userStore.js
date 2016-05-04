@@ -49,6 +49,12 @@ Dispatcher.register(function (action) {
             _users.splice(existingUserIndex, 1, action.user);
             UserStore.emitChange();
             break;
+        case ActionTypes.DELETE_USER:
+            _.remove(_users, function (user) {
+                return action.id === user.id;
+            });
+            UserStore.emitChange();
+            break;
 
         default:
         //no op
