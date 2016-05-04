@@ -4,7 +4,7 @@ var React = require('react');
 var Router = require('react-router');
 var Toastr = require('toastr');
 var UserForm = require('./userForm');
-var UserAction = require('../../actions/userAction');
+var UserAction = require('../../actions/userActions');
 var UserStore = require('../../stores/userStore');
 
 var ManageUserPage = React.createClass({
