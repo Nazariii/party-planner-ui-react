@@ -1,7 +1,9 @@
 "use strict";
 
 var React = require('react');
-var UserApi = require('../../api/userApi');
+var UserAction = require('../../actions/userAction');
+var UserStore = require('../../stores/userStore');
+
 var UserList = require('./userList');
 var Link = require('react-router').Link;
 
@@ -9,14 +11,8 @@ var UserPage = React.createClass({
 
     getInitialState: function () {
         return {
-            users: []
+            users: UserStore.getAllUsers()
         };
-    },
-
-    componentDidMount: function () {
-        if (this.isMounted()) {
-            this.setState({users: UserApi.getAllUsers()});
-        }
     },
 
     render: function () {

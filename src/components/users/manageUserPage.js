@@ -4,7 +4,8 @@ var React = require('react');
 var Router = require('react-router');
 var Toastr = require('toastr');
 var UserForm = require('./userForm');
-var UserApi = require('../../api/userApi');
+var UserAction = require('../../actions/userAction');
+var UserStore = require('../../stores/userStore');
 
 var ManageUserPage = React.createClass({
     mixins: [
@@ -33,7 +34,7 @@ var ManageUserPage = React.createClass({
         var userId = this.props.params.id;
 
         if (userId) {
-            this.setState({user: UserApi.getUserById(userId)});
+            this.setState({user: UserStore.getUserById(userId)});
         }
     },
 
@@ -67,7 +68,7 @@ var ManageUserPage = React.createClass({
         if (!this.userFormIsValid()) {
             return;
         }
-        UserApi.saveUser(this.state.user);
+        UserAction.createUser(this.state.user);
         this.setState({dirty: false});
         Toastr.success('User saved');
         this.transitionTo('users');
