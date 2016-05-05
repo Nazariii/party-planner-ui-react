@@ -1,7 +1,7 @@
 "use strict";
 
 var React = require('react');
-var UserActions = require('../../actions/userActions');
+//var UserActions = require('../../actions/userActions');
 var UserStore = require('../../stores/userStore');
 
 var UserList = require('./userList');

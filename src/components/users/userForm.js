@@ -4,7 +4,7 @@ var React = require('react');
 var TextInput = require('../common/textInput');
 
 var UserForm = React.createClass({
-    prorTypes: {
+    propTypes: {
         user: React.PropTypes.object.isRequired,
         onSave: React.PropTypes.func.isRequired,
         onChange: React.PropTypes.func.isRequired,

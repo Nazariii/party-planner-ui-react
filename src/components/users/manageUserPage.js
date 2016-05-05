@@ -12,6 +12,10 @@ var ManageUserPage = React.createClass({
         Router.Navigation
     ],
 
+    propTypes: {
+        params: React.PropTypes.object
+    },
+
     statics: {
         willTransitionFrom: function (transition, component) {
             if (component.state.dirty && !confirm('leave without saving')) {
@@ -29,7 +33,7 @@ var ManageUserPage = React.createClass({
         };
     },
 
-    //call setState in this function wouldn't cause rereander
+    //call setState in this function wouldn't cause rerender
     componentWillMount: function () {
         var userId = this.props.params.id;
 
