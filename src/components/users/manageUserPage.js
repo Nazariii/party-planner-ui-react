@@ -46,24 +46,26 @@ var ManageUserPage = React.createClass({
         this.setState({dirty: true});
         var field = event.target.name;
         var value = event.target.value;
-        this.state.user[field] = value;
-        return this.setState({user: this.state.user});
+        var localUser = Object.assign({}, this.state.user);
+        localUser[field] = value;
+        return this.setState({user: localUser});
     },
 
     userFormIsValid: function () {
         var formIsValid = true;
-        this.state.errors = {}; // clear any previous errors
+        var newErrors = {};
+        //this.state.errors = {}; // clear any previous errors
 
         if (this.state.user.firstName.length < 2) {
-            this.state.errors.firstName = 'First name must be at least 2 characters';
+            newErrors.firstName = 'First name must be at least 2 characters';
             formIsValid = false;
         }
         if (this.state.user.lastName.length < 2) {
-            this.state.errors.lastName = 'Last name must be at least 2 characters';
+            newErrors.lastName = 'Last name must be at least 2 characters';
             formIsValid = false;
         }
 
-        this.setState({errors: this.state.errors});
+        this.setState({errors: newErrors});
         return formIsValid;
     },
 
