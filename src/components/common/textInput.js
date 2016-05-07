@@ -4,7 +4,7 @@ let React = require('react');
 
 const TextInput = (props) => {
 
-    var wrapperClass = 'form-group';
+    let wrapperClass = 'form-group';
     if (props.error && props.error.length > 0) {
         wrapperClass += " " + 'has-error';
     }

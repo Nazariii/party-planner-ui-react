@@ -11,12 +11,10 @@ let withRouter = require('react-router').withRouter;
 const ManageUserPage = React.createClass({
 
     propTypes: {
-        params: React.PropTypes.object
+        params: React.PropTypes.object,
+        router: React.PropTypes.object.isRequired,
+        route: React.PropTypes.object.isRequired
     },
-
-    /* contextTypes: {
-     router: React.PropTypes.object.isRequired
-     },*/
 
     getInitialState: function () {
         return {
@@ -36,12 +34,12 @@ const ManageUserPage = React.createClass({
     },
 
     componentDidMount() {
-        this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
+        this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
     },
 
-    routerWillLeave: function (nextLocation) {
-        if (this.state.dirty && !confirm('leave without saving')) {
-            transition.abort();
+    routerWillLeave: function () {
+        if (this.state.dirty) {
+            return 'leave without saving??';
         }
     },
 
@@ -84,9 +82,10 @@ const ManageUserPage = React.createClass({
             UserAction.createUser(this.state.user);
         }
 
-        this.setState({dirty: false});
-        Toastr.success('User saved');
-        this.props.router.push('users');
+        this.setState({dirty: false}, function () {
+            Toastr.success('User saved');
+            this.props.router.push('users');
+        });
     },
 
     render: function () {

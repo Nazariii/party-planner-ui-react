@@ -1,22 +1,19 @@
 "use strict";
 
-var React = require('react');
-var Link = require('react-router').Link;
-var UserAction = require('../../actions/userActions');
-var toastr = require('toastr');
+let React = require('react');
+let Link = require('react-router').Link;
+let UserAction = require('../../actions/userActions');
+let toastr = require('toastr');
 
-var UserList = React.createClass({
-    propTypes: {
-        users: React.PropTypes.array.isRequired
-    },
+class UserList extends React.Component {
 
-    deleteUser: function (id, event) {
+    deleteUser(id, event) {
         event.preventDefault();
         UserAction.deleteUser(id);
         toastr.success('User deleted');
-    },
+    }
 
-    render: function () {
+    render() {
         var createUserRow = function (user) {
             return (
                 <tr key={user.id}>
@@ -44,6 +41,10 @@ var UserList = React.createClass({
             </div>
         );
     }
-});
+}
+
+UserList.propTypes = {
+    users: React.PropTypes.array.isRequired
+};
 
 module.exports = UserList;

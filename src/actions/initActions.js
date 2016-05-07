@@ -1,11 +1,11 @@
 "use strict";
 
-var Dispatcher = require('../dispatcher/appDispatcher');
-var UserApi = require('../api/userApi');
-var ActionTypes = require('../constants/actionTypes');
+let Dispatcher = require('../dispatcher/appDispatcher');
+let UserApi = require('../api/userApi');
+let ActionTypes = require('../constants/actionTypes');
 
-var InitActions = {
-    initApp: function () {
+let InitActions = {
+    initApp () {
         Dispatcher.dispatch({
             actionType: ActionTypes.INITIALIZE,
             initialData: {
@@ -14,4 +14,5 @@ var InitActions = {
         });
     }
 };
+
 module.exports = InitActions;
