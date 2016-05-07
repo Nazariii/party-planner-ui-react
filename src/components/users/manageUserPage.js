@@ -6,15 +6,17 @@ let UserForm = require('./userForm');
 let UserAction = require('../../actions/userActions');
 let UserStore = require('../../stores/userStore');
 
+let withRouter = require('react-router').withRouter;
+
 const ManageUserPage = React.createClass({
 
     propTypes: {
         params: React.PropTypes.object
     },
 
-    contextTypes: {
-        router: React.PropTypes.object.isRequired
-    },
+    /* contextTypes: {
+     router: React.PropTypes.object.isRequired
+     },*/
 
     getInitialState: function () {
         return {
@@ -33,7 +35,7 @@ const ManageUserPage = React.createClass({
         }
     },
 
-    /*componentDidMount() {
+    componentDidMount() {
         this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
     },
 
@@ -41,7 +43,7 @@ const ManageUserPage = React.createClass({
         if (this.state.dirty && !confirm('leave without saving')) {
             transition.abort();
         }
-    },*/
+    },
 
     setUserState: function (event) {
         this.setState({dirty: true});
@@ -84,7 +86,7 @@ const ManageUserPage = React.createClass({
 
         this.setState({dirty: false});
         Toastr.success('User saved');
-        this.context.router.push('users');
+        this.props.router.push('users');
     },
 
     render: function () {
@@ -98,4 +100,4 @@ const ManageUserPage = React.createClass({
     }
 });
 
-module.exports = ManageUserPage;
+module.exports = withRouter(ManageUserPage);
