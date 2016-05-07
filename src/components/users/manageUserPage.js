@@ -1,28 +1,20 @@
 "use strict";
 
 var React = require('react');
-var Router = require('react-router');
 var Toastr = require('toastr');
 var UserForm = require('./userForm');
 var UserAction = require('../../actions/userActions');
 var UserStore = require('../../stores/userStore');
+var History = require('react-router').History;
+
 
 var ManageUserPage = React.createClass({
     mixins: [
-        Router.Navigation
+        History
     ],
 
     propTypes: {
         params: React.PropTypes.object
-    },
-
-    statics: {
-        willTransitionFrom: function (transition, component) {
-            if (component.state.dirty && !confirm('leave without saving')) {
-                transition.abort();
-            }
-
-        }
     },
 
     getInitialState: function () {
@@ -41,6 +33,16 @@ var ManageUserPage = React.createClass({
             this.setState({user: UserStore.getUserById(userId)});
         }
     },
+
+    /*componentDidMount() {
+        this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave)
+    },
+
+    routerWillLeave: function (nextLocation) {
+        if (this.state.dirty && !confirm('leave without saving')) {
+            transition.abort();
+        }
+    },*/
 
     setUserState: function (event) {
         this.setState({dirty: true});
@@ -83,7 +85,7 @@ var ManageUserPage = React.createClass({
 
         this.setState({dirty: false});
         Toastr.success('User saved');
-        this.transitionTo('users');
+        this.history.pushState(null, 'users');
     },
 
     render: function () {

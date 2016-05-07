@@ -3,7 +3,7 @@
 var React = require('react');
 
 var About = React.createClass({
-    statics: {
+   /* statics: {
         willTransitionTo: function (transition, params, query, callback) {
             if (!confirm('Don\'t do this, NOO!')) {
                 transition.about();
@@ -12,7 +12,7 @@ var About = React.createClass({
             }
         }
     },
-
+*/
     render: function () {
         return (
             <div >

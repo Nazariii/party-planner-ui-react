@@ -2,14 +2,17 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Router = require('react-router');
+var Router = require('react-router').Router;
 var routes = require('./route');
 var InitAction = require('./actions/initActions');
 
 InitAction.initApp();
 
-Router.run(routes, /*Router.HistoryLocation,*/ function (Handler) {
+ReactDOM.render(<Router>{routes}</Router>, document.getElementById("app"));
 
-    ReactDOM.render(<Handler/>, document.getElementById("app"));
+/*
+ Router.run(routes, /!*Router.HistoryLocation,*!/ function (Handler) {
 
-});
+ ReactDOM.render(<Handler/>, document.getElementById("app"));
+
+ });*/

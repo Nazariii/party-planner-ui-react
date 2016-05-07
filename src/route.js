@@ -1,28 +1,36 @@
 "use strict";
 
 var React = require('react');
-var Router = require('react-router');
+var ReactRouter = require('react-router');
 
-var Route = Router.Route;
-var Redirect = Router.Redirect;
+var Route = ReactRouter.Route;
+var Redirect = ReactRouter.Redirect;
+var IndexRoute = ReactRouter.IndexRoute;
 
-var DefaultRouter = Router.DefaultRoute;
-var NotFoundRoute = Router.NotFoundRoute;
+var HomePage = require('./components/homePage');
+
 
 var routes = (
-    <Route name="app" path="/" handler={require('./components/app')}>
-        <DefaultRouter handler={require('./components/homePage')}/>
-        <NotFoundRoute handler={require('./components/page404')}/>
+    <Route path="/" component={require('./components/app')}>
 
-        <Route name="users" handler={require('./components/users/userPage')}/>
-        <Route name="addUser" path="user" handler={require('./components/users/manageUserPage')}/>
-        <Route name="manageUser" path="user/:id" handler={require('./components/users/manageUserPage')}/>
-        <Route name="about" handler={require('./components/about/aboutPage')}/>
+        <IndexRoute component={HomePage}/>
 
-        <Redirect from="index" to="app"/>
-        <Redirect from="usr" to="users"/>    //typo redirection
-        <Redirect from="about/*" to="about"/> //wildcard redirection
+        <Route path="users" component={require('./components/users/userPage')}/>
+        <Route path="user" component={require('./components/users/manageUserPage')}/>
+        <Route path="user/:id" component={require('./components/users/manageUserPage')}/>
+        <Route path="about" component={require('./components/about/aboutPage')}/>
+
+        <Redirect from="about/!*" to="about"/> //wildcard redirection
+        <Redirect from="index" to="/"/>
+        <Redirect from="usr" to="users"/> //typo redirection
+
+        // NotFoundRoute
+        <Route path="*" component={require('./components/page404')}/>
     </Route>
 );
 
 module.exports = routes;
+/*
+
+
+ */

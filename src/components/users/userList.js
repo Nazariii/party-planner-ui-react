@@ -20,7 +20,7 @@ var UserList = React.createClass({
         var createUserRow = function (user) {
             return (
                 <tr key={user.id}>
-                    <td><Link to="manageUser" params={{id: user.id}}>{user.id}</Link></td>
+                    <td><Link to={`user/${user.id}`}>{user.id}</Link></td>
                     <td>{user.firstName} {user.lastName}</td>
                     <td><a href="#" onClick={this.deleteUser.bind(this, user.id)}>Delete</a></td>
                 </tr>
