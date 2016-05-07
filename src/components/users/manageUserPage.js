@@ -1,20 +1,19 @@
 "use strict";
 
-var React = require('react');
-var Toastr = require('toastr');
-var UserForm = require('./userForm');
-var UserAction = require('../../actions/userActions');
-var UserStore = require('../../stores/userStore');
-var History = require('react-router').History;
+let React = require('react');
+let Toastr = require('toastr');
+let UserForm = require('./userForm');
+let UserAction = require('../../actions/userActions');
+let UserStore = require('../../stores/userStore');
 
-
-var ManageUserPage = React.createClass({
-    mixins: [
-        History
-    ],
+const ManageUserPage = React.createClass({
 
     propTypes: {
         params: React.PropTypes.object
+    },
+
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
     },
 
     getInitialState: function () {
@@ -85,7 +84,7 @@ var ManageUserPage = React.createClass({
 
         this.setState({dirty: false});
         Toastr.success('User saved');
-        this.history.pushState(null, 'users');
+        this.context.router.push('users');
     },
 
     render: function () {
