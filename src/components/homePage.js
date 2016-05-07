@@ -1,10 +1,10 @@
 "use strict";
 
-var React = require('react');
-var Link = require('react-router').Link;
+let React = require('react');
+let Link = require('react-router').Link;
 
-var Home = React.createClass({
-    render: function () {
+class Home extends React.Component {
+    render() {
         return (
             <div className="jumbotron">
                 <h1>Party planner</h1>
@@ -13,6 +13,5 @@ var Home = React.createClass({
             </div>
         );
     }
-});
-
+}
 module.exports = Home;

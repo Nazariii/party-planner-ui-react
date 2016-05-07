@@ -1,40 +1,38 @@
 "use strict";
 
-var React = require('react');
+let React = require('react');
 
-var TextInput = React.createClass({
+const TextInput = (props) => {
 
-    propTypes: {
-        name: React.PropTypes.string.isRequired,
-        label: React.PropTypes.string.isRequired,
-        onChange: React.PropTypes.func.isRequired,
-        placeholder: React.PropTypes.string,
-        value: React.PropTypes.string,
-        error: React.PropTypes.string
-    },
-
-    render: function () {
-        var wrapperClass = 'form-group';
-        if (this.props.error && this.props.error.length > 0) {
-            wrapperClass += " " + 'has-error';
-        }
-
-        return (
-            <div className={wrapperClass}>
-                <label htmlFor={this.props.name}>{this.props.label}</label>
-                <div className="field">
-                    <input type="text"
-                           name={this.props.name}
-                           className="form-control"
-                           placeholder={this.props.placeholder}
-                           ref={this.props.name}
-                           onChange={this.props.onChange}
-                           value={this.props.value}/>
-                    <div className="input">{this.props.error}</div>
-                </div>
-            </div>
-        );
+    var wrapperClass = 'form-group';
+    if (props.error && props.error.length > 0) {
+        wrapperClass += " " + 'has-error';
     }
-});
+
+    return (
+        <div className={wrapperClass}>
+            <label htmlFor={props.name}>{props.label}</label>
+            <div className="field">
+                <input type="text"
+                       name={props.name}
+                       className="form-control"
+                       placeholder={props.placeholder}
+                       /*ref={props.name}*/
+                       onChange={props.onChange}
+                       value={props.value}/>
+                <div className="input">{props.error}</div>
+            </div>
+        </div>
+    );
+};
+
+TextInput.propTypes = {
+    name: React.PropTypes.string.isRequired,
+    label: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    placeholder: React.PropTypes.string,
+    value: React.PropTypes.string,
+    error: React.PropTypes.string
+};
 
 module.exports = TextInput;

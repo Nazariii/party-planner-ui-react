@@ -1,43 +1,38 @@
 "use strict";
 
-var React = require('react');
-var TextInput = require('../common/textInput');
+let React = require('react');
+let TextInput = require('../common/textInput');
 
-var UserForm = React.createClass({
-    propTypes: {
-        user: React.PropTypes.object.isRequired,
-        onSave: React.PropTypes.func.isRequired,
-        onChange: React.PropTypes.func.isRequired,
-        errors: React.PropTypes.object
-    },
+const UserForm = (props) =>
+    <form >
+        <h1> Manage user</h1>
+        <TextInput
+            name="firstName"
+            label="First Name"
+            value={props.user.firstName}
+            onChange={props.onChange}
+            error={props.errors.firstName}
+        />
 
-    render: function () {
-        return (
-            <form >
-                <h1> Manage user</h1>
-                <TextInput
-                    name="firstName"
-                    label="First Name"
-                    value={this.props.user.firstName}
-                    onChange={this.props.onChange}
-                    error={this.props.errors.firstName}
-                />
+        <TextInput
+            name="lastName"
+            label="Last Name"
+            value={props.user.lastName}
+            onChange={props.onChange}
+            error={props.errors.lastName}
+        />
 
-                <TextInput
-                    name="lastName"
-                    label="Last Name"
-                    value={this.props.user.lastName}
-                    onChange={this.props.onChange}
-                    error={this.props.errors.lastName}
-                />
+        <input type="submit"
+               value="Save"
+               className="btn btn-default"
+               onClick={props.onSave}/>
+    </form>;
 
-                <input type="submit"
-                       value="Save"
-                       className="btn btn-default"
-                       onClick={this.props.onSave}/>
-            </form>
-        );
-    }
-});
+UserForm.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    onSave: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    errors: React.PropTypes.object
+};
 
 module.exports = UserForm;
