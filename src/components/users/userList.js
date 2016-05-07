@@ -9,13 +9,13 @@ var UserList = React.createClass({
     propTypes: {
         users: React.PropTypes.array.isRequired
     },
-    
+
     deleteUser: function (id, event) {
         event.preventDefault();
         UserAction.deleteUser(id);
         toastr.success('User deleted');
     },
-    
+
     render: function () {
         var createUserRow = function (user) {
             return (
@@ -31,9 +31,11 @@ var UserList = React.createClass({
             <div >
                 <table className="table">
                     <thead>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th></th>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
                     {this.props.users.map(createUserRow, this)}
