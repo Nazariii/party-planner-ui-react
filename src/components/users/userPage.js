@@ -1,33 +1,34 @@
 "use strict";
 
-var React = require('react');
-//var UserActions = require('../../actions/userActions');
-var UserStore = require('../../stores/userStore');
+let React = require('react');
+let Link = require('react-router').Link;
 
-var UserList = require('./userList');
-var Link = require('react-router').Link;
+let UserStore = require('../../stores/userStore');
+let UserList = require('./userList');
 
-var UserPage = React.createClass({
+class UserPage extends React.Component {
 
-    getInitialState: function () {
-        return {
+    constructor() {
+        super();
+        this._onChange = this._onChange.bind(this);
+        this.state = {
             users: UserStore.getAllUsers()
         };
-    },
+    }
 
-    _onChange: function () {
+    _onChange() {
         this.setState({users: UserStore.getAllUsers()});
-    },
+    }
 
-    componentWillMount: function () {
+    componentWillMount () {
         UserStore.addChangeListener(this._onChange);
-    },
+    }
 
-    componentWillUnmount: function () {
+    componentWillUnmount () {
         UserStore.removeChangeListener(this._onChange);
-    },
+    }
 
-    render: function () {
+    render () {
         return (
             <div >
                 <h1>Users</h1>
@@ -36,6 +37,6 @@ var UserPage = React.createClass({
             </div>
         );
     }
-});
+}
 
 module.exports = UserPage;

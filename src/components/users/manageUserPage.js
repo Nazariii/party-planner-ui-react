@@ -8,54 +8,51 @@ let UserStore = require('../../stores/userStore');
 
 let withRouter = require('react-router').withRouter;
 
-const ManageUserPage = React.createClass({
+class ManageUserPage extends React.Component {
 
-    propTypes: {
-        params: React.PropTypes.object,
-        router: React.PropTypes.object.isRequired,
-        route: React.PropTypes.object.isRequired
-    },
-
-    getInitialState: function () {
-        return {
+    constructor() {
+        super();
+        this.setUserState = this.setUserState.bind(this);
+        this.saveUser = this.saveUser.bind(this);
+        this.routerWillLeave = this.routerWillLeave.bind(this);
+        this.state = {
             user: {id: '', firstName: '', lastName: ''},
             errors: {},
             dirty: false
         };
-    },
+    }
 
     //call setState in this function wouldn't cause rerender
-    componentWillMount: function () {
+    componentWillMount() {
         var userId = this.props.params.id;
 
         if (userId) {
             this.setState({user: UserStore.getUserById(userId)});
         }
-    },
+    }
 
     componentDidMount() {
         this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
-    },
+    }
 
-    routerWillLeave: function () {
+    routerWillLeave() {
         if (this.state.dirty) {
             return 'leave without saving??';
         }
-    },
+    }
 
-    setUserState: function (event) {
+    setUserState(event) {
         this.setState({dirty: true});
         var field = event.target.name;
         var value = event.target.value;
         var localUser = Object.assign({}, this.state.user);
         localUser[field] = value;
         return this.setState({user: localUser});
-    },
+    }
 
-    userFormIsValid: function () {
+    userFormIsValid() {
         var formIsValid = true;
         var newErrors = {};
-        //this.state.errors = {}; // clear any previous errors
 
         if (this.state.user.firstName.length < 2) {
             newErrors.firstName = 'First name must be at least 2 characters';
@@ -68,9 +65,9 @@ const ManageUserPage = React.createClass({
 
         this.setState({errors: newErrors});
         return formIsValid;
-    },
+    }
 
-    saveUser: function (event) {
+    saveUser(event) {
         event.preventDefault();
         if (!this.userFormIsValid()) {
             return;
@@ -86,9 +83,9 @@ const ManageUserPage = React.createClass({
             Toastr.success('User saved');
             this.props.router.push('users');
         });
-    },
+    }
 
-    render: function () {
+    render() {
         return (
             <UserForm user={this.state.user}
                       onChange={this.setUserState}
@@ -97,6 +94,12 @@ const ManageUserPage = React.createClass({
             />
         );
     }
-});
+}
+
+ManageUserPage.propTypes = {
+    params: React.PropTypes.object,
+    router: React.PropTypes.object.isRequired,
+    route: React.PropTypes.object.isRequired
+};
 
 module.exports = withRouter(ManageUserPage);
