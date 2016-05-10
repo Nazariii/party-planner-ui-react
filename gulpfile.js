@@ -10,7 +10,6 @@ var source = require('vinyl-source-stream'); // Use conventional text streams wi
 
 var concat = require('gulp-concat'); // concatenates files
 
-//todo in new version differ rules
 var lint = require('gulp-eslint'); // Lint JS files, including jsx
 
 var config = {
@@ -19,6 +18,7 @@ var config = {
     paths: {
         html: './src/*.html',
         js: './src/**/*.js',
+        jsx: './src/**/*.jsx',
         images: './src/images/*',
         css: [
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
@@ -26,7 +26,7 @@ var config = {
             'node_modules/toastr/toastr.css'
         ],
         dist: './dist',
-        mainJs: './src/main.js'
+        mainJs: './src/main.jsx'
     }
 };
 
@@ -55,7 +55,10 @@ gulp.task('html', function () {
 
 gulp.task('js', function () {
     browserify(config.paths.mainJs)
-        .transform(reactify)
+        .transform("babelify", {
+            presets: ["es2015", "react"],
+            plugins: ["babel-plugin-transform-object-rest-spread", "transform-object-rest-spread"]
+        })
         .bundle() // generate one file
         .on('error', console.error.bind(console))
         .pipe(source('bundle.js')) // bundle name
@@ -71,25 +74,32 @@ gulp.task('css', function () {
 
 //Migrates images to dist folder
 gulp.task('images', function () {
-   gulp.src(config.paths.images)
-       .pipe(gulp.dest(config.paths.dist + '/images'))
-       .pipe(connect.reload());
+    gulp.src(config.paths.images)
+        .pipe(gulp.dest(config.paths.dist + '/images'))
+        .pipe(connect.reload());
 
     //publish flavicon
     gulp.src('./src/favicon.ico')
         .pipe(gulp.dest(config.paths.dist));
 });
 
-gulp.task('lint', function () {
+gulp.task('lintJs', function () {
     return gulp.src(config.paths.js)
+        .pipe(lint({config: 'eslint.config.json'}))
+        .pipe(lint.format());
+});
+
+gulp.task('lintJsx', function () {
+    return gulp.src(config.paths.jsx)
         .pipe(lint({config: 'eslint.config.json'}))
         .pipe(lint.format());
 });
 
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
-    gulp.watch(config.paths.js, ['js', 'lint']);
+    gulp.watch(config.paths.js, ['js', 'lintJs']);
+    gulp.watch(config.paths.jsx, ['js', 'lintJsx']);
 });
 
 //default gulp task, that runs html and open tasks by simply "gulp" in console
-gulp.task('default', ['html', 'js', 'css', 'images', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'images', 'lintJs', 'lintJsx', 'open', 'watch']);

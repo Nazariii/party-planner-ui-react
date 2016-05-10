@@ -2,7 +2,8 @@
 
 let React = require('react');
 let Toastr = require('toastr');
-let UserForm = require('./userForm');
+
+let UserForm = require('./userForm.jsx');
 let UserAction = require('../../actions/userActions');
 let UserStore = require('../../stores/userStore');
 

@@ -4,7 +4,7 @@ let React = require('react');
 let Link = require('react-router').Link;
 
 let UserStore = require('../../stores/userStore');
-let UserList = require('./userList');
+let UserList = require('./userList.jsx');
 
 class UserPage extends React.Component {
 

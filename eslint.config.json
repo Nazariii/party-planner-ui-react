@@ -1,10 +1,11 @@
 {
   "parserOptions": {
     "ecmaVersion": 6,
-    "sourceType": "script",
+    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
-      "impliedStrict": true
+      "impliedStrict": true,
+      "experimentalObjectRestSpread": true
     }
   },
 

@@ -5,7 +5,7 @@ var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var hashHistory = require('react-router').hashHistory;
 
-var routes = require('./route');
+var routes = require('./route.jsx');
 var InitAction = require('./actions/initActions');
 
 InitAction.initApp();
