@@ -2,7 +2,7 @@
 
 let Dispatcher = require('../dispatcher/appDispatcher');
 let UserApi = require('../api/userApi');
-let ActionTypes = require('../constants/actionTypes');
+import {default as ActionTypes} from '../constants/actionTypes';
 
 let UserAction = {
     createUser (user) {
