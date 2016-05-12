@@ -1,6 +1,6 @@
 "use strict";
 
-var Dispatcher = require('../dispatcher/appDispatcher');
+import Dispatcher from '../dispatcher/appDispatcher';
 import {default as ActionTypes} from '../constants/actionTypes';
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');

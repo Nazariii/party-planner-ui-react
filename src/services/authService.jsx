@@ -7,6 +7,10 @@ import AppConst from '../constants/appConstants';
 
 class AuthService {
 
+    isLogedIn() {
+        return axios.get(AppConst.LOGIN_URL);
+    }
+
     loginUser(username, password) {
         return axios.option(AppConst.LOGIN_URL).then((response) => {
             console.log(response);

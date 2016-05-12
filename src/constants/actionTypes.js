@@ -11,5 +11,9 @@ export default keyMirror({
 
     REQUEST_LOGIN_USER: null,
     REQUEST_LOGIN_USER_SUCCESS: null,
-    REQUEST_LOGIN_USER_ERROR: null
+    REQUEST_LOGIN_USER_ERROR: null,
+    
+    REQUEST_IS_USER_LOGGED: null,
+    REQUEST_IS_USER_LOGGED_SUCCESS: null,
+    REQUEST_IS_USER_LOGGED_ERROR: null
 });
