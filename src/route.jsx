@@ -1,29 +1,34 @@
 "use strict";
 
-let React = require('react');
-let ReactRouter = require('react-router');
+import  React from 'react';
+import {Route, Redirect, IndexRoute} from 'react-router';
 
-let Route = ReactRouter.Route;
-let Redirect = ReactRouter.Redirect;
-let IndexRoute = ReactRouter.IndexRoute;
-
-let HomePage = require('./components/homePage.jsx');
+import App from './components/app.jsx';
+import HomePage from './components/homePage.jsx';
+import LoginPage from './components/login/loginPage.jsx';
+import LoginRequired from './components/loginRequired.jsx';
+import UsersPage from './components/users/userPage.jsx';
+import ManageUser from './components/users/manageUserPage.jsx';
+import AboutPage from './components/about/aboutPage.jsx';
+import Page404 from './components/page404.jsx';
 
 const routes = (
-    <Route path="/" component={require('./components/app.jsx')}>
+    <Route path="/" component={App}>
 
         <IndexRoute component={HomePage}/>
-
-        <Route path="users" component={require('./components/users/userPage.jsx')}/>
-        <Route path="user" component={require('./components/users/manageUserPage.jsx')}/>
-        <Route path="user/:id" component={require('./components/users/manageUserPage.jsx')}/>
-        <Route path="about" component={require('./components/about/aboutPage.jsx')}/>
+        <Route component={HomePage}>
+            <Route path="users" component={UsersPage}/>
+            <Route path="user" component={ManageUser}/>
+            <Route path="user/:id" component={ManageUser}/>
+        </Route>
+        <Route path="login" component={LoginPage}/>
+        <Route path="about" component={AboutPage}/>
 
         <Redirect from="about/!*" to="about"/> //wildcard redirection
         <Redirect from="index" to="/"/>
         <Redirect from="usr" to="users"/> //typo redirection
         // NotFoundRoute
-        <Route path="*" component={require('./components/page404.jsx')}/>
+        <Route path="*" component={Page404}/>
     </Route>
 );
 

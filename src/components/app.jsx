@@ -23,4 +23,4 @@ App.propTypes = {
     children: React.PropTypes.element
 };
 
-module.exports = App;
+export default App;
