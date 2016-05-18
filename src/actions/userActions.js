@@ -1,6 +1,6 @@
 "use strict";
 
-let AppDispatcher = require( '../dispatcher/appDispatcher');
+let AppDispatcher = require( '../dispatcher/AppDispatcher');
 
 let UserApi = require('../api/userApi');
 let ActionTypes = require( '../constants/actionTypes');
