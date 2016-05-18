@@ -1,15 +1,17 @@
 "use strict";
 
-import Dispatcher from '../dispatcher/appDispatcher';
+//import Dispatcher from '../dispatcher/appDispatcher';
+import AppDispatcher  from '../dispatcher/AppDispatcher';
+
 import {default as ActionTypes} from '../constants/actionTypes';
-var EventEmitter = require('events').EventEmitter;
-var assign = require('object-assign');
-var _ = require('lodash');
+import EventEmitter from 'events';
+//import assign from 'object-assign';
+import _ from 'lodash';
 var CHANGE_EVENT = 'change';
 
 var _users = [];
 
-var UserStore = assign({}, EventEmitter.prototype, {
+var UserStore = Object.assign({}, EventEmitter.prototype, {
     addChangeListener: function (callback) {
         this.on(CHANGE_EVENT, callback);
     },
@@ -31,7 +33,8 @@ var UserStore = assign({}, EventEmitter.prototype, {
     }
 });
 
-Dispatcher.register(function (action) {
+AppDispatcher.register((action) => {
+    console.log(`UserStore Dispatches ${action.actionType}`);
     switch (action.actionType) {
         case ActionTypes.INITIALIZE:
             _users = action.initialData.users;

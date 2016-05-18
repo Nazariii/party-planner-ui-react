@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect'); //runs local dev server
 var open = require('gulp-open'); // Open a UEL in a web browser
+let del = require('del');
 
 var browserify = require('browserify'); // Bundles Js
 var reactify = require('reactify'); // Transforms React JSX to JS
@@ -11,6 +12,7 @@ var source = require('vinyl-source-stream'); // Use conventional text streams wi
 var concat = require('gulp-concat'); // concatenates files
 
 var lint = require('gulp-eslint'); // Lint JS files, including jsx
+let babel = require('gulp-babel');
 
 var config = {
     port: 9005,
@@ -26,7 +28,9 @@ var config = {
             'node_modules/toastr/toastr.css'
         ],
         dist: './dist',
-        mainJs: './src/main.jsx'
+        temp: './dist/temp',
+        mainJsx: './src/main.jsx',
+        mainJs: './dist/temp/main.js'
     }
 };
 
@@ -53,12 +57,26 @@ gulp.task('html', function () {
         .pipe(connect.reload());
 });
 
-gulp.task('js', function () {
-    browserify(config.paths.mainJs)
-        .transform("babelify", {
-            presets: ["es2015", "react"],
-            plugins: ["babel-plugin-transform-object-rest-spread", "transform-object-rest-spread"]
-        })
+gulp.task('translate', () => {
+    return gulp.src([config.paths.js, config.paths.jsx])
+        .pipe(babel({
+            plugins: [
+                "transform-react-jsx",
+                "transform-es2015-modules-commonjs"
+            ]
+        }))
+        .pipe(gulp.dest(config.paths.temp));
+});
+
+gulp.task('js', ['translate'], function () {
+    browserify(config.paths.mainJs, {debug: true})
+    /*.transform("babelify", {
+     plugins: ["transform-runtime",
+     "transform-es2015-modules-commonjs",
+     "transform-react-jsx",
+     "babel-plugin-transform-object-rest-spread",
+     "transform-object-rest-spread"]
+     })*/
         .bundle() // generate one file
         .on('error', console.error.bind(console))
         .pipe(source('bundle.js')) // bundle name
@@ -101,5 +119,12 @@ gulp.task('watch', function () {
     gulp.watch(config.paths.jsx, ['js', 'lintJsx']);
 });
 
+gulp.task('clean-temp', function () {
+    return del([config.paths.dist]);
+});
+
+gulp.task('run-clean', ['clean-temp', 'default']);
+
 //default gulp task, that runs html and open tasks by simply "gulp" in console
-gulp.task('default', ['html', 'js', 'css', 'images', 'lintJs', 'lintJsx', 'open', 'watch']);
+//need empty function, because gulp task run it asynchronously when task are 'void'
+gulp.task('default', ['html', 'js', 'css', 'images', 'lintJs', 'lintJsx', 'open', 'watch'], () => {});

@@ -1,8 +1,8 @@
 "use strict";
 
 import React from 'react';
-import TextInput from '../common/textInput.jsx';
-import PasswordInput from '../common/passwordInput.jsx';
+import TextInput from '../common/textInput';
+import PasswordInput from '../common/passwordInput';
 
 const LoginForm = (props) =>
     <form >

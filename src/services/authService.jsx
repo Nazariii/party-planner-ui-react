@@ -8,7 +8,9 @@ import AppConst from '../constants/appConstants';
 class AuthService {
 
     isLogedIn() {
-        return axios.get(AppConst.LOGIN_URL);
+        return axios.get(AppConst.LOGIN_URL,{
+            withCredentials: true
+        });
     }
 
     loginUser(username, password) {

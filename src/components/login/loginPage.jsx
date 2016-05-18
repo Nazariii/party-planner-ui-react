@@ -3,7 +3,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 
-import LoginForm from './loginForm.jsx';
+import LoginForm from './loginForm';
 import AuthAction from '../../actions/authAction';
 import AuthStore from '../../stores/authStore';
 
@@ -44,9 +44,9 @@ class LoginPage extends React.Component {
      */
     //todo error toastr
     _onLogin() {
-
-        console.log("%%%triger _onLogin event");
+        console.log("LoginPage => _onLogin ");
         if (AuthStore.isLoggedIn()) {
+            console.log("is logged");
             this.props.router.push("/");
         } else {
             var newErrors = {};
@@ -56,6 +56,7 @@ class LoginPage extends React.Component {
     }
 
     loginFormIsValid() {
+        console.log("LoginPage => loginFormIsValid ");
         var formIsValid = true;
         var newErrors = {};
 
@@ -74,7 +75,7 @@ class LoginPage extends React.Component {
 
     login(event) {
         event.preventDefault();
-        console.log("%%%triger login button");
+        console.log("LoginPage => login ");
         if (!this.loginFormIsValid()) {
             return;
         }

@@ -5,10 +5,10 @@ var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var hashHistory = require('react-router').hashHistory;
 
-var routes = require('./route.jsx');
+var routes = require('./route');
 var InitAction = require('./actions/initActions');
 
-InitAction.initApp();
+InitAction();
 
 ReactDOM.render(<Router history={hashHistory} routes={routes}/>, document.getElementById("app"));
 

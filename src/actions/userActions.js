@@ -1,6 +1,7 @@
 "use strict";
 
-let Dispatcher = require('../dispatcher/appDispatcher');
+import AppDispatcher from '../dispatcher/appDispatcher';
+
 let UserApi = require('../api/userApi');
 import {default as ActionTypes} from '../constants/actionTypes';
 
@@ -9,7 +10,7 @@ let UserAction = {
         let newUser = UserApi.saveUser(user);
 
         //Dispatcher notifies all stores that user was created
-        Dispatcher.dispatch(ActionTypes.CREATE_USER,
+        AppDispatcher.dispatch(ActionTypes.CREATE_USER,
             {
                 user: newUser
             });
@@ -18,7 +19,7 @@ let UserAction = {
     updateUser (user) {
         let updatedUser = UserApi.saveUser(user);
 
-        Dispatcher.dispatch(ActionTypes.UPDATE_USER,
+        AppDispatcher.dispatch(ActionTypes.UPDATE_USER,
             {
                 user: updatedUser
             });
@@ -27,7 +28,7 @@ let UserAction = {
     deleteUser (id) {
         UserApi.deleteUser(id);
 
-        Dispatcher.dispatch(ActionTypes.DELETE_USER,
+        AppDispatcher.dispatch(ActionTypes.DELETE_USER,
             {
                 id: id
             });

@@ -1,7 +1,7 @@
 "use strict";
 
 let React = require('react');
-let TextInput = require('../common/textInput.jsx');
+let TextInput = require('../common/textInput');
 
 const UserForm = (props) =>
     <form >
