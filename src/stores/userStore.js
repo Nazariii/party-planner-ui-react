@@ -1,12 +1,12 @@
 "use strict";
 
-//import Dispatcher from '../dispatcher/appDispatcher';
-import AppDispatcher  from '../dispatcher/AppDispatcher';
+//let Dispatcher = require( '../dispatcher/appDispatcher');
+let AppDispatcher  = require( '../dispatcher/AppDispatcher');
 
-import {default as ActionTypes} from '../constants/actionTypes';
-import EventEmitter from 'events';
-//import assign from 'object-assign';
-import _ from 'lodash';
+let ActionTypes = require( '../constants/actionTypes');
+let EventEmitter = require( 'events');
+//let assign = require( 'object-assign');
+let _ = require( 'lodash');
 var CHANGE_EVENT = 'change';
 
 var _users = [];

@@ -1,10 +1,10 @@
 "use strict";
 
-import axios from 'axios';
-//import Cookie from 'js-cookie';
+let axios = require( 'axios');
+//let Cookie = require( 'js-cookie');
 
-import AppConst from '../constants/appConstants';
-//axios.defaults.baseURL = 'https://api.example.com';
+let AppConst = require( '../constants/appConstants');
+//axios.defaults.baseURL = 'https://api.example.com');
 class AuthService {
 
     isLogedIn() {
@@ -40,7 +40,7 @@ class AuthService {
     }
 }
 
-export default new AuthService();
+module.exports =  new AuthService();
 
 /*
 

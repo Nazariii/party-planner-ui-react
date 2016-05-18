@@ -1,9 +1,9 @@
 "use strict";
 
-import React from 'react';
+let React = require( 'react');
 
-import LoginAction from '../actions/authAction';
-import AuthStore from '../stores/authStore';
+let LoginAction = require( '../actions/authAction');
+let AuthStore = require( '../stores/authStore');
 
 
 LoginAction.isUserLoggedIn();
@@ -20,7 +20,7 @@ class LoginRequired extends React.Component {
 
 LoginRequired.propTypes = {};
 
-export default LoginAction;
+module.exports =  LoginAction;
 
 /*if (!AuthStore.isLoggedIn()) {
  LoginAction.loginUser("naz","1234");

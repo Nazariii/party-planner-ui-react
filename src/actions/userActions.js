@@ -1,9 +1,9 @@
 "use strict";
 
-import AppDispatcher from '../dispatcher/appDispatcher';
+let AppDispatcher = require( '../dispatcher/appDispatcher');
 
 let UserApi = require('../api/userApi');
-import {default as ActionTypes} from '../constants/actionTypes';
+let ActionTypes = require( '../constants/actionTypes');
 
 let UserAction = {
     createUser (user) {

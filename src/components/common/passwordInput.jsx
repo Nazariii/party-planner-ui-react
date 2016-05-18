@@ -1,6 +1,6 @@
 "use strict";
 
-import React from 'react';
+let React = require( 'react');
 
 const PasswordInput = (props) => {
 
@@ -34,4 +34,4 @@ PasswordInput.propTypes = {
     error: React.PropTypes.string
 };
 
-export default PasswordInput;
+module.exports =  PasswordInput;

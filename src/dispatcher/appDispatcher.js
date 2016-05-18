@@ -1,13 +1,12 @@
 "use strict";
 
 let Dispatcher = require('flux').Dispatcher;
-let flux = new Dispatcher();
-//const flux = new Dispatcher();
+
+const flux = new Dispatcher();
 
 let AppDispatcher = {
 
-
-    dispatch(type, action = {}) {
+    dispatch: function (type, action = {}) {
         if (!type) {
             throw new Error('You forgot to specify type.');
         }
@@ -16,12 +15,12 @@ let AppDispatcher = {
         flux.dispatch(Object.assign({actionType: type}, action) /*{actionType: type, ...action}*/);
     },
 
-    register(callback) {
+    register: function (callback) {
         console.log('Dispatcher => register', callback);
         return flux.register(callback);
     },
 
-    dispatchAsync(promise, types, action = {}) {
+    dispatchAsync: function (promise, types, action = {}) {
         const {request, success, failure} = types;
         console.log('Dispatcher => dispatchAsync');
 
@@ -35,7 +34,5 @@ let AppDispatcher = {
         );
     }
 };
-
-//let DispatcherInstance = new AppDispatcher();
 
 module.exports = AppDispatcher;

@@ -1,12 +1,12 @@
 /*eslint-disable strict */ //Disable check because we can't run strict mode. Need global vars
 
-import React from 'react';
-import $ from 'jquery';
-import jQuery from 'jquery';
+let React = require( 'react');
+let $ = require( 'jquery');
+let jQuery = require( 'jquery');
 
-import Header from './common/header';
-import LoginAction from '../actions/authAction';
-import AuthStore from '../stores/authStore';
+let Header = require( './common/header');
+let LoginAction = require( '../actions/authAction');
+let AuthStore = require( '../stores/authStore');
 
 // export for others scripts to use
 window.$ = $;
@@ -63,4 +63,4 @@ App.propTypes = {
     children: React.PropTypes.element
 };
 
-export default App;
+module.exports =  App;

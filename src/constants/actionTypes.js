@@ -1,8 +1,8 @@
 "use strict";
 
-import keyMirror from 'keymirror';
+let keyMirror = require( 'keymirror');
 
-export default keyMirror({
+module.exports =  keyMirror({
     INITIALIZE: null,
     CREATE_USER: null,
     UPDATE_USER: null,

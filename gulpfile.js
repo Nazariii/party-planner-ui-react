@@ -61,8 +61,7 @@ gulp.task('translate', () => {
     return gulp.src([config.paths.js, config.paths.jsx])
         .pipe(babel({
             plugins: [
-                "transform-react-jsx",
-                "transform-es2015-modules-commonjs"
+                "transform-react-jsx"
             ]
         }))
         .pipe(gulp.dest(config.paths.temp));

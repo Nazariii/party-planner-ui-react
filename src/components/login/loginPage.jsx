@@ -1,11 +1,11 @@
 "use strict";
 
-import React from 'react';
-import {withRouter} from 'react-router';
+let React = require( 'react');
+let {withRouter} = require( 'react-router');
 
-import LoginForm from './loginForm';
-import AuthAction from '../../actions/authAction';
-import AuthStore from '../../stores/authStore';
+let LoginForm = require( './loginForm');
+let AuthAction = require( '../../actions/authAction');
+let AuthStore = require( '../../stores/authStore');
 
 class LoginPage extends React.Component {
     constructor() {
@@ -98,4 +98,4 @@ LoginPage.propTypes = {
     router: React.PropTypes.object.isRequired
 };
 
-export default withRouter(LoginPage);
+module.exports =  withRouter(LoginPage);

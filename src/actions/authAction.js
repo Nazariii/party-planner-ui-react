@@ -1,10 +1,10 @@
 "use strict";
 
-import AppDispatcher from '../dispatcher/appDispatcher';
-import {default as ActionTypes} from '../constants/actionTypes';
-import AuthService from '../services/authService';
+let AppDispatcher = require( '../dispatcher/appDispatcher');
+let ActionTypes = require( '../constants/actionTypes');
+let AuthService = require( '../services/authService');
 
-export default {
+module.exports =  {
 
     loginUser(username, password) {
         console.log('authAction => loginUser');

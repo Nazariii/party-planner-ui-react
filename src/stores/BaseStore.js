@@ -1,24 +1,24 @@
-import EventEmitter from 'events';
+let EventEmitter = require('events');
 
 const CHANGE_EVENT = 'change';
 
- class BaseStore extends EventEmitter {
+class BaseStore extends EventEmitter {
 
     constructor() {
         super();
         console.log("BaseStore => constructor");
     }
-    
+
     /*subscribe(actionSubscribe) {
-        console.log(`BaseStore => subscribe `,actionSubscribe);
-        this._dispatchToken = Dispatcher.register(actionSubscribe);
-    }
+     console.log(`BaseStore => subscribe `,actionSubscribe);
+     this._dispatchToken = Dispatcher.register(actionSubscribe);
+     }
 
-    get dispatchToken() {
-        console.log("BaseStore => get dispatchToken");
+     get dispatchToken() {
+     console.log("BaseStore => get dispatchToken");
 
-        return this._dispatchToken;
-    }*/
+     return this._dispatchToken;
+     }*/
 
     emitChange() {
         console.log("BaseStore => emitChange");
@@ -39,4 +39,4 @@ const CHANGE_EVENT = 'change';
 }
 
 BaseStore.dispatchToken = null;
-export default BaseStore;
+exports.modules = BaseStore;

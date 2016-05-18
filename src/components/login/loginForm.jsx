@@ -1,8 +1,8 @@
 "use strict";
 
-import React from 'react';
-import TextInput from '../common/textInput';
-import PasswordInput from '../common/passwordInput';
+let React = require( 'react');
+let TextInput = require( '../common/textInput');
+let PasswordInput = require( '../common/passwordInput');
 
 const LoginForm = (props) =>
     <form >
@@ -36,4 +36,4 @@ LoginForm.propTypes = {
     errors: React.PropTypes.object
 };
 
-export default LoginForm;
+module.exports =  LoginForm;

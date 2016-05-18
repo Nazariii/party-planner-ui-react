@@ -1,9 +1,8 @@
-import BaseStore from './baseStore';
-import {default as ActionTypes} from '../constants/actionTypes';
-import AppDispatcher  from '../dispatcher/AppDispatcher';
+let BaseStore = require( './baseStore');
+let ActionTypes = require( '../constants/actionTypes');
+let AppDispatcher  = require( '../dispatcher/AppDispatcher');
 
-
-class AuthStore extends BaseStore {
+class AuthStore extends BaseStore.modules {
     constructor() {
         super();
         //this.subscribe(() => this._registerToActions.bind(this));
@@ -66,4 +65,4 @@ authStoreInstance.dispatchToken = AppDispatcher.register((action) => {
     }
 });
 
-export default authStoreInstance;
+module.exports =  authStoreInstance;
