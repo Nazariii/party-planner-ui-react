@@ -6,6 +6,7 @@ var open = require('gulp-open'); // Open a UEL in a web browser
 let del = require('del');
 
 var browserify = require('browserify'); // Bundles Js
+var webpack = require('webpack-stream');
 var reactify = require('reactify'); // Transforms React JSX to JS
 var source = require('vinyl-source-stream'); // Use conventional text streams with gulp
 
@@ -69,17 +70,24 @@ gulp.task('translate', () => {
 });
 
 gulp.task('js', ['translate'], function () {
-    browserify(config.paths.mainJs, {debug: true})
-    /*.transform("babelify", {
-     plugins: ["transform-runtime",
-     "transform-es2015-modules-commonjs",
-     "transform-react-jsx",
-     "babel-plugin-transform-object-rest-spread",
-     "transform-object-rest-spread"]
-     })*/
-        .bundle() // generate one file
+    gulp.src(config.paths.mainJs)
+        .pipe(webpack({
+            devtool: 'source-map',
+            output: {
+                filename: 'bundle.js'
+            }
+        }))
+        //browserify(config.paths.mainJs, {debug: true})
+        /*.transform("babelify", {
+         plugins: ["transform-runtime",
+         "transform-es2015-modules-commonjs",
+         "transform-react-jsx",
+         "babel-plugin-transform-object-rest-spread",
+         "transform-object-rest-spread"]
+         })
+         .bundle() */ // generate one file
         .on('error', console.error.bind(console))
-        .pipe(source('bundle.js')) // bundle name
+        //.pipe(source('bundle.js')) // bundle name
         .pipe(gulp.dest(config.paths.dist + '/scripts')) // bundle path
         .pipe(connect.reload())
 });
@@ -127,4 +135,4 @@ gulp.task('run-clean', ['clean-temp', 'default']);
 
 //default gulp task, that runs html and open tasks by simply "gulp" in console
 //need empty function, because gulp task run it asynchronously when task are 'void'
-gulp.task('default', ['html', 'js', 'css', 'images', 'lintJs', 'lintJsx', 'open', 'watch'], () => {});
+gulp.task('default', ['html', 'js', 'css', 'images', 'lintJs', 'lintJsx', 'open', 'watch']);

@@ -36,17 +36,17 @@ authStoreInstance.dispatchToken = AppDispatcher.register((action) => {
         case ActionTypes.REQUEST_LOGIN_USER_SUCCESS:
             if (action.status === 200) {
                 console.log("AuthStore => REQUEST_LOGIN_USER_SUCCESS");
-                this._user = action.body;
-                this._isLoggedIn = true;
+                authStoreInstance._user = action.body;
+                authStoreInstance._isLoggedIn = true;
             } else {
-                this._isLoggedIn = false;
+                authStoreInstance._isLoggedIn = false;
             }
-            this._error = null;
+            authStoreInstance._error = null;
             authStoreInstance.emitChange();
             break;
 
         case ActionTypes.REQUEST_IS_USER_LOGGED_ERROR:
-            this._error = action.error;
+            authStoreInstance._error = action.error;
             authStoreInstance.emitChange();
             break;
 
@@ -57,7 +57,7 @@ authStoreInstance.dispatchToken = AppDispatcher.register((action) => {
          break;*/
 
         case ActionTypes.REQUEST_LOGIN_USER_ERROR:
-            this._error = action.error;
+            authStoreInstance._error = action.error;
             authStoreInstance.emitChange();
             break;
 
