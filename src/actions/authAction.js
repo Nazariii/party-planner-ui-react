@@ -1,6 +1,6 @@
 "use strict";
 
-import AppDispatcher from '../dispatcher/appDispatcher';
+import AppDispatcher from '../dispatcher/AppDispatcher';
 import {default as ActionTypes} from '../constants/actionTypes';
 import AuthService from '../services/authService';
 
