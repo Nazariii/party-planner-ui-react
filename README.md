@@ -7,10 +7,14 @@ _This is test project_
 
 ###Technologies:
 
-- React /React Router/ Flux
-- Node/ npm /Gulp / Browserify / Babel
+##### Actual:
+- React / React Router / Flux
+- Node / npm / Gulp / Babel / WebPack
 - Axios
 - Bootstrap
-- ESLint
+- ESLint / LogLevel
 - Lodash
 - Toastr
+
+##### Former:
+- Browserify / reactify

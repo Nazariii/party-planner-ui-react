@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
     _onLogin() {
         log.trace("LoginPage => _onLogin ");
         if (AuthStore.isLoggedIn()) {
-            console.log("is logged");
+            log.trace("is logged");
             this.props.router.push("/");
         } else {
             let newErrors = {};

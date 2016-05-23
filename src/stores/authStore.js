@@ -26,6 +26,11 @@ class AuthStore extends BaseStore {
         log.trace("AuthStore => isLoggedIn", this._isLoggedIn);
         return this._isLoggedIn;
     }
+
+    getLoggedUser(){
+        log.trace("AuthStore => getLoggedUser", this._user);
+        return this._user;
+    }
 }
 
 let authStoreInstance = new AuthStore();
@@ -36,7 +41,7 @@ authStoreInstance.dispatchToken = AppDispatcher.register((action) => {
         case ActionTypes.REQUEST_IS_USER_LOGGED_SUCCESS:
         case ActionTypes.REQUEST_LOGIN_USER_SUCCESS:
             if (action.status === 200) {
-                console.log("AuthStore => REQUEST_LOGIN_USER_SUCCESS");
+                log.trace("AuthStore => REQUEST_LOGIN_USER_SUCCESS");
                 authStoreInstance._user = action.body;
                 authStoreInstance._isLoggedIn = true;
             } else {
