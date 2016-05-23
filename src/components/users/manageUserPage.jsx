@@ -1,13 +1,13 @@
 "use strict";
 
-let React = require('react');
-let Toastr = require('toastr');
+import React from 'react';
+import Toastr from 'toastr';
 
-let UserForm = require('./userForm');
-let UserAction = require('../../actions/userActions');
-let UserStore = require('../../stores/userStore');
+import UserForm from './userForm';
+import UserAction from '../../actions/userActions';
+import UserStore from '../../stores/userStore';
 
-let withRouter = require('react-router').withRouter;
+import {withRouter} from 'react-router';
 
 class ManageUserPage extends React.Component {
 
@@ -25,7 +25,7 @@ class ManageUserPage extends React.Component {
 
     //call setState in this function wouldn't cause rerender
     componentWillMount() {
-        var userId = this.props.params.id;
+        let userId = this.props.params.id;
 
         if (userId) {
             this.setState({user: UserStore.getUserById(userId)});
@@ -44,16 +44,16 @@ class ManageUserPage extends React.Component {
 
     setUserState(event) {
         this.setState({dirty: true});
-        var field = event.target.name;
-        var value = event.target.value;
-        var localUser = Object.assign({}, this.state.user);
+        let field = event.target.name;
+        let value = event.target.value;
+        let localUser = Object.assign({}, this.state.user);
         localUser[field] = value;
         return this.setState({user: localUser});
     }
 
     userFormIsValid() {
-        var formIsValid = true;
-        var newErrors = {};
+        let formIsValid = true;
+        let newErrors = {};
 
         if (this.state.user.firstName.length < 2) {
             newErrors.firstName = 'First name must be at least 2 characters';
@@ -103,4 +103,4 @@ ManageUserPage.propTypes = {
     route: React.PropTypes.object.isRequired
 };
 
-module.exports = withRouter(ManageUserPage);
+export default withRouter(ManageUserPage);

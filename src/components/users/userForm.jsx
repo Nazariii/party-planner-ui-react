@@ -1,7 +1,7 @@
 "use strict";
 
-let React = require('react');
-let TextInput = require('../common/textInput');
+import React from 'react';
+import TextInput from '../common/textInput';
 
 const UserForm = (props) =>
     <form >
@@ -35,4 +35,4 @@ UserForm.propTypes = {
     errors: React.PropTypes.object
 };
 
-module.exports = UserForm;
+export default UserForm;

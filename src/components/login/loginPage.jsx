@@ -31,9 +31,9 @@ class LoginPage extends React.Component {
 
     setLoginState(event) {
         this.setState({dirty: true});
-        var field = event.target.name;
-        var value = event.target.value;
-        var localUser = Object.assign({}, this.state.user);
+        let field = event.target.name;
+        let value = event.target.value;
+        let localUser = Object.assign({}, this.state.user);
         localUser[field] = value;
         return this.setState({user: localUser});
     }
@@ -49,7 +49,7 @@ class LoginPage extends React.Component {
             console.log("is logged");
             this.props.router.push("/");
         } else {
-            var newErrors = {};
+            let newErrors = {};
             newErrors.credentionals='Email or password was incorrect';
             this.setState({errors: newErrors});
         }
@@ -57,8 +57,8 @@ class LoginPage extends React.Component {
 
     loginFormIsValid() {
         console.log("LoginPage => loginFormIsValid ");
-        var formIsValid = true;
-        var newErrors = {};
+        let formIsValid = true;
+        let newErrors = {};
 
         if (this.state.user.email.length < 2) {
             newErrors.email = 'Email must be at least 2 characters';

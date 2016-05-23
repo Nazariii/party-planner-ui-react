@@ -39,11 +39,11 @@ class App extends React.Component {
     }
 
     //todo simplify
-    _updateAuth(loggedIn) {
-        console.log(`App => _updateAuth ${loggedIn}`);
+    _updateAuth() {
+        console.log(`App => _updateAuth`);
 
         this.setState({
-            isLoggedIn: loggedIn
+            isLoggedIn: AuthStore.isLoggedIn()
         });
     }
 

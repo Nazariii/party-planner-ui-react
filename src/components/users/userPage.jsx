@@ -1,10 +1,10 @@
 "use strict";
 
-let React = require('react');
-let Link = require('react-router').Link;
+import React from'react';
+import {Link} from'react-router';
 
-let UserStore = require('../../stores/userStore');
-let UserList = require('./userList');
+import UserStore from '../../stores/userStore';
+import UserList from'./userList';
 
 class UserPage extends React.Component {
 
@@ -20,15 +20,15 @@ class UserPage extends React.Component {
         this.setState({users: UserStore.getAllUsers()});
     }
 
-    componentWillMount () {
+    componentWillMount() {
         UserStore.addChangeListener(this._onChange);
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         UserStore.removeChangeListener(this._onChange);
     }
 
-    render () {
+    render() {
         return (
             <div >
                 <h1>Users</h1>

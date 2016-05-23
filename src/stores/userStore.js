@@ -1,17 +1,15 @@
 "use strict";
 
-//import Dispatcher from '../dispatcher/appDispatcher';
-import AppDispatcher  from '../dispatcher/AppDispatcher';
-
-import {default as ActionTypes} from '../constants/actionTypes';
 import EventEmitter from 'events';
-//import assign from 'object-assign';
 import _ from 'lodash';
-var CHANGE_EVENT = 'change';
 
-var _users = [];
+import AppDispatcher  from '../dispatcher/AppDispatcher';
+import {default as ActionTypes} from '../constants/actionTypes';
 
-var UserStore = Object.assign({}, EventEmitter.prototype, {
+let CHANGE_EVENT = 'change';
+let _users = [];
+
+let UserStore = Object.assign({}, EventEmitter.prototype, {
     addChangeListener: function (callback) {
         this.on(CHANGE_EVENT, callback);
     },
@@ -47,11 +45,13 @@ AppDispatcher.register((action) => {
             break;
 
         case ActionTypes.UPDATE_USER:
-            var existingUser = _.find(_users, {id: action.user.id});
-            var existingUserIndex = _.indexOf(_users, existingUser);
+        {
+            let existingUser = _.find(_users, {id: action.user.id});
+            let existingUserIndex = _.indexOf(_users, existingUser);
             _users.splice(existingUserIndex, 1, action.user);
             UserStore.emitChange();
             break;
+        }
         case ActionTypes.DELETE_USER:
             _.remove(_users, function (user) {
                 return action.id === user.id;
@@ -64,4 +64,4 @@ AppDispatcher.register((action) => {
     }
 });
 
-module.exports = UserStore;
+export default UserStore;

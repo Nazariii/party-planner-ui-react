@@ -1,18 +1,12 @@
 "use strict";
 
-var gulp = require('gulp');
-var connect = require('gulp-connect'); //runs local dev server
-var open = require('gulp-open'); // Open a UEL in a web browser
+let gulp = require('gulp');
+let connect = require('gulp-connect'); //runs local dev server
+let open = require('gulp-open'); // Open a UEL in a web browser
 let del = require('del');
-
-var browserify = require('browserify'); // Bundles Js
-var webpack = require('webpack-stream');
-var reactify = require('reactify'); // Transforms React JSX to JS
-var source = require('vinyl-source-stream'); // Use conventional text streams with gulp
-
-var concat = require('gulp-concat'); // concatenates files
-
-var lint = require('gulp-eslint'); // Lint JS files, including jsx
+let webpack = require('webpack-stream');
+let concat = require('gulp-concat'); // concatenates files
+let lint = require('gulp-eslint'); // Lint JS files, including jsx
 let babel = require('gulp-babel');
 
 var config = {
@@ -77,17 +71,7 @@ gulp.task('js', ['translate'], function () {
                 filename: 'bundle.js'
             }
         }))
-        //browserify(config.paths.mainJs, {debug: true})
-        /*.transform("babelify", {
-         plugins: ["transform-runtime",
-         "transform-es2015-modules-commonjs",
-         "transform-react-jsx",
-         "babel-plugin-transform-object-rest-spread",
-         "transform-object-rest-spread"]
-         })
-         .bundle() */ // generate one file
         .on('error', console.error.bind(console))
-        //.pipe(source('bundle.js')) // bundle name
         .pipe(gulp.dest(config.paths.dist + '/scripts')) // bundle path
         .pipe(connect.reload())
 });
@@ -127,11 +111,9 @@ gulp.task('watch', function () {
     gulp.watch(config.paths.jsx, ['js', 'lintJsx']);
 });
 
-gulp.task('clean-temp', function () {
+gulp.task('clean', function () {
     return del([config.paths.dist]);
 });
-
-gulp.task('run-clean', ['clean-temp', 'default']);
 
 //default gulp task, that runs html and open tasks by simply "gulp" in console
 //need empty function, because gulp task run it asynchronously when task are 'void'

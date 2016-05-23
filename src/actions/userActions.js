@@ -1,8 +1,7 @@
 "use strict";
 
+import UserApi from '../api/userApi';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-
-let UserApi = require('../api/userApi');
 import {default as ActionTypes} from '../constants/actionTypes';
 
 let UserAction = {
@@ -35,4 +34,4 @@ let UserAction = {
     }
 };
 
-module.exports = UserAction;
+export default UserAction;

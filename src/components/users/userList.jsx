@@ -1,9 +1,9 @@
 "use strict";
 
-let React = require('react');
-let Link = require('react-router').Link;
-let UserAction = require('../../actions/userActions');
-let toastr = require('toastr');
+import React from 'react';
+import  {Link} from 'react-router';
+import  UserAction from '../../actions/userActions';
+import  toastr from 'toastr';
 
 class UserList extends React.Component {
 
@@ -14,7 +14,7 @@ class UserList extends React.Component {
     }
 
     render() {
-        var createUserRow = function (user) {
+        let createUserRow = function (user) {
             return (
                 <tr key={user.id}>
                     <td><Link to={`user/${user.id}`}>{user.id}</Link></td>

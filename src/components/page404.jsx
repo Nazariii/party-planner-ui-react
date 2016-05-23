@@ -1,7 +1,7 @@
 "use strict";
 
-var React = require('react');
-var IndexLink = require('react-router').IndexLink;
+import React from 'react';
+import {IndexLink} from 'react-router';
 
 class Page404 extends React.Component {
     render() {
