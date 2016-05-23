@@ -1,34 +1,34 @@
 "use strict";
 
 //This file is mocking a web API by hitting hard coded data.
-var users = require('./userData').users;
+import users from './userData';
 var _ = require('lodash');
 
 //This would be performed on the server in a real app. Just stubbing in.
-var _generateId = function(user) {
+var _generateId = function (user) {
     return user.firstName.toLowerCase() + '-' + user.lastName.toLowerCase();
 };
 
-var _clone = function(item) {
+let _clone = function (item) {
     return JSON.parse(JSON.stringify(item)); //return cloned copy so that the item is passed by value instead of by reference
 };
 
-var UserApi = {
-    getAllUsers: function() {
+let UserApi = {
+    getAllUsers: function () {
         return _clone(users);
     },
 
-    getUserById: function(id) {
-        var user = _.find(users, {id: id});
+    getUserById: function (id) {
+        let user = _.find(users, {id: id});
         return _clone(user);
     },
 
-    saveUser: function(user) {
+    saveUser: function (user) {
         //pretend an ajax call to web api is made here
         console.log('Pretend this just saved the user to the DB via AJAX call...');
 
         if (user.id) {
-            var existingUserIndex = _.indexOf(users, _.find(users, {id: user.id}));
+            let existingUserIndex = _.indexOf(users, _.find(users, {id: user.id}));
             users.splice(existingUserIndex, 1, user);
         } else {
             //Just simulating creation here.
@@ -41,10 +41,10 @@ var UserApi = {
         return _clone(user);
     },
 
-    deleteUser: function(id) {
+    deleteUser: function (id) {
         console.log('Pretend this just deleted the user from the DB via an AJAX call...');
-        _.remove(users, { id: id});
+        _.remove(users, {id: id});
     }
 };
 
-module.exports = UserApi;
+export default UserApi;
