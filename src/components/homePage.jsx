@@ -1,8 +1,7 @@
 "use strict";
 
-let React = require('react');
-let ReactRouter = require('react-router');
-let Link = ReactRouter.Link;
+import React from 'react';
+import {Link} from 'react-router';
 
 const Home = () =>
     <div className="jumbotron">
@@ -12,4 +11,4 @@ const Home = () =>
         <Link to="login" className="btn btn-primary btn-lg">Log In</Link>
     </div>;
 
-module.exports = Home;
+export default Home;

@@ -47,4 +47,4 @@ UserList.propTypes = {
     users: React.PropTypes.array.isRequired
 };
 
-module.exports = UserList;
+export default UserList;

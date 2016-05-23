@@ -38,4 +38,4 @@ let AppDispatcher = {
 
 //let DispatcherInstance = new AppDispatcher();
 
-module.exports = AppDispatcher;
+export default AppDispatcher;

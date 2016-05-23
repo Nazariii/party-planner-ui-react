@@ -39,4 +39,4 @@ class UserPage extends React.Component {
     }
 }
 
-module.exports = UserPage;
+export default UserPage;

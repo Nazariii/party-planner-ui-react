@@ -36,13 +36,13 @@ gulp.task('connect', function () {
         port: config.port,
         base: config.devBaseUrl,
         livereload: true
-    })
+    });
 });
 
 //open after connect
 gulp.task('open', ['connect'], function () {
     gulp.src('dist/index.html')
-        .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}))
+        .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}));
 });
 
 //put all html file to dist and reload
@@ -73,13 +73,13 @@ gulp.task('js', ['translate'], function () {
         }))
         .on('error', console.error.bind(console))
         .pipe(gulp.dest(config.paths.dist + '/scripts')) // bundle path
-        .pipe(connect.reload())
+        .pipe(connect.reload());
 });
 
 gulp.task('css', function () {
     gulp.src(config.paths.css)
         .pipe(concat('bundle.css'))
-        .pipe(gulp.dest(config.paths.dist + '/css'))
+        .pipe(gulp.dest(config.paths.dist + '/css'));
 });
 
 //Migrates images to dist folder

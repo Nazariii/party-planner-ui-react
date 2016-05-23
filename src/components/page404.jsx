@@ -15,4 +15,4 @@ class Page404 extends React.Component {
     }
 }
 
-module.exports = Page404;
+export default Page404;

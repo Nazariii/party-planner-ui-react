@@ -1,6 +1,6 @@
 "use strict";
 
-let React = require('react');
+import React from 'react';
 
 const TextInput = (props) => {
 
@@ -35,4 +35,4 @@ TextInput.propTypes = {
     error: React.PropTypes.string
 };
 
-module.exports = TextInput;
+export default TextInput;

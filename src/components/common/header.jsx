@@ -1,8 +1,7 @@
 "use strict";
 
-let React = require('react');
-let Link = require('react-router').Link;
-let IndexLink = require('react-router').IndexLink;
+import React from 'react';
+import {Link, IndexLink} from 'react-router';
 
 const Header = (props) =>
     <nav className="navbar navbar-default">
@@ -24,4 +23,4 @@ Header.propTypes = {
     loggedIn: React.PropTypes.bool.isRequired
 };
 
-module.exports = Header;
+export default Header;

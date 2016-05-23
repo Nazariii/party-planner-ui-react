@@ -1,6 +1,6 @@
 "use strict";
 
-let React = require('react');
+import React from 'react';
 
 const About = () =>
     <div >
@@ -18,4 +18,4 @@ const About = () =>
         </p>
     </div>;
 
-module.exports = About;
+export default About;
