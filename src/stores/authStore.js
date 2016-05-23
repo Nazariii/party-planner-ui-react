@@ -1,3 +1,4 @@
+import log from 'loglevel';
 import BaseStore from './baseStore';
 import {default as ActionTypes} from '../constants/actionTypes';
 import AppDispatcher  from '../dispatcher/AppDispatcher';
@@ -22,7 +23,7 @@ class AuthStore extends BaseStore {
     }
 
     isLoggedIn() {
-        console.log("AuthStore => isLoggedIn", this._isLoggedIn);
+        log.trace("AuthStore => isLoggedIn", this._isLoggedIn);
         return this._isLoggedIn;
     }
 }
@@ -30,7 +31,7 @@ class AuthStore extends BaseStore {
 let authStoreInstance = new AuthStore();
 
 authStoreInstance.dispatchToken = AppDispatcher.register((action) => {
-    console.log(`AuthStore dispatches `, action);
+    log.trace(`AuthStore dispatches `, action);
     switch (action.actionType) {
         case ActionTypes.REQUEST_IS_USER_LOGGED_SUCCESS:
         case ActionTypes.REQUEST_LOGIN_USER_SUCCESS:

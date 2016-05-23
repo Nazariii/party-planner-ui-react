@@ -2,7 +2,7 @@
 
 let Dispatcher = require('flux').Dispatcher;
 let flux = new Dispatcher();
-//const flux = new Dispatcher();
+import log from 'loglevel';
 
 let AppDispatcher = {
 
@@ -11,19 +11,19 @@ let AppDispatcher = {
         if (!type) {
             throw new Error('You forgot to specify type.');
         }
-        console.log('Dispatcher => dispatch', type, action);
+        log.info('Dispatcher => dispatch', type, action);
 
         flux.dispatch(Object.assign({actionType: type}, action) /*{actionType: type, ...action}*/);
     },
 
     register(callback) {
-        console.log('Dispatcher => register', callback);
+        log.trace('Dispatcher => register', callback);
         return flux.register(callback);
     },
 
     dispatchAsync(promise, types, action = {}) {
         const {request, success, failure} = types;
-        console.log('Dispatcher => dispatchAsync');
+        log.trace('Dispatcher => dispatchAsync');
 
         this.dispatch(request, action);
         //NB: unable to use Promise.catch() syntax here

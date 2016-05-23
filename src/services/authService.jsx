@@ -1,29 +1,18 @@
 "use strict";
 
 import axios from 'axios';
-//import Cookie from 'js-cookie';
 
 import AppConst from '../constants/appConstants';
-//axios.defaults.baseURL = 'https://api.example.com';
+
 class AuthService {
 
-    isLogedIn() {
+    isLoggedIn() {
         return axios.get(AppConst.LOGIN_URL,{
             withCredentials: true
         });
     }
 
     loginUser(username, password) {
-        /*return axios({
-         url: AppConst.LOGIN_URL,
-         method: 'options'
-         }).then((response) => {
-         console.log(response);
-         console.log(response.data);
-         console.log(response.status);
-         console.log(response.statusText);
-         console.log(response.headers);
-         console.log(response.config);*/
         return axios({
                 url: AppConst.LOGIN_URL,
                 method: 'post',
@@ -36,7 +25,12 @@ class AuthService {
                 withCredentials: true
             }
         );
-        //});
+    }
+
+    logout() {
+        return axios.get(AppConst.LOGOUT_URL,{
+            withCredentials: true
+        });
     }
 }
 

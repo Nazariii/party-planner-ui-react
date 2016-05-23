@@ -3,6 +3,8 @@
 import React from 'react';
 import $ from 'jquery';
 import jQuery from 'jquery';
+import log from 'loglevel';
+
 
 import Header from './common/header';
 import LoginAction from '../actions/authAction';
@@ -15,7 +17,7 @@ window.jQuery = jQuery;
 class App extends React.Component {
     constructor() {
         super();
-        console.log("App constructor");
+        log.trace("App constructor");
         this._updateAuth = this._updateAuth.bind(this);
         this.state = {
             isLoggedIn: this.setAuth()
@@ -40,7 +42,7 @@ class App extends React.Component {
 
     //todo simplify
     _updateAuth() {
-        console.log(`App => _updateAuth`);
+        log.trace(`App => _updateAuth`);
 
         this.setState({
             isLoggedIn: AuthStore.isLoggedIn()

@@ -1,39 +1,40 @@
 import EventEmitter from 'events';
+import log from 'loglevel';
 
 const CHANGE_EVENT = 'change';
 
- class BaseStore extends EventEmitter {
+class BaseStore extends EventEmitter {
 
     constructor() {
         super();
-        console.log("BaseStore => constructor");
+        log.trace("BaseStore => constructor");
     }
-    
+
     /*subscribe(actionSubscribe) {
-        console.log(`BaseStore => subscribe `,actionSubscribe);
-        this._dispatchToken = Dispatcher.register(actionSubscribe);
-    }
+     log.trace(`BaseStore => subscribe `,actionSubscribe);
+     this._dispatchToken = Dispatcher.register(actionSubscribe);
+     }
 
-    get dispatchToken() {
-        console.log("BaseStore => get dispatchToken");
+     get dispatchToken() {
+     log.trace("BaseStore => get dispatchToken");
 
-        return this._dispatchToken;
-    }*/
+     return this._dispatchToken;
+     }*/
 
     emitChange() {
-        console.log("BaseStore => emitChange");
+        log.trace("BaseStore => emitChange");
 
         this.emit(CHANGE_EVENT);
     }
 
     addChangeListener(cb) {
-        console.log("BaseStore => addChangeListener");
+        log.trace("BaseStore => addChangeListener");
 
         this.on(CHANGE_EVENT, cb);
     }
 
     removeChangeListener(cb) {
-        console.log("BaseStore => removeChangeListener");
+        log.trace("BaseStore => removeChangeListener");
         this.removeListener(CHANGE_EVENT, cb);
     }
 }

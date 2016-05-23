@@ -2,6 +2,7 @@
 
 import EventEmitter from 'events';
 import _ from 'lodash';
+import log from 'loglevel';
 
 import AppDispatcher  from '../dispatcher/AppDispatcher';
 import {default as ActionTypes} from '../constants/actionTypes';
@@ -32,7 +33,7 @@ let UserStore = Object.assign({}, EventEmitter.prototype, {
 });
 
 AppDispatcher.register((action) => {
-    console.log(`UserStore Dispatches ${action.actionType}`);
+    log.trace(`UserStore Dispatches ${action.actionType}`);
     switch (action.actionType) {
         case ActionTypes.INITIALIZE:
             _users = action.initialData.users;
